@@ -43,6 +43,18 @@ public class ContactList {
         }
     }
 
+    public void show(int index)
+    {
+        if(index >= 0 && index < length())
+        {
+            System.out.println(list.get(index).toString());
+        }
+        else
+        {
+            System.out.println("Error: ID Not Found");
+        }
+    }
+
     public Contact getContact(int i) {
         return list.get(i);
     }
