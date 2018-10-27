@@ -12,6 +12,7 @@ public class Main {
     public static final String SEARCH = "3";
     public static final String LIST = "4";
     public static final String UPDATE = "5";
+    public static final String SHOW = "6";
     public static final String EXIT = "0";
 
     static ContactList list;
@@ -69,6 +70,12 @@ public class Main {
             if (option.equals(LIST)) {
                 list.list();
             }
+            if (option.equals(SHOW))
+            {
+                System.out.println("Please enter the id");
+                int index = scanner.nextInt();
+                list.show(index);
+            }
         } while (!option.equals("0"));
     }
 
@@ -84,6 +91,7 @@ public class Main {
         System.out.println("3. Search Contact");
         System.out.println("4. List Contact");
         System.out.println("5. Update Contact");
+        System.out.println("6. Show Contact");
         System.out.println("0. Exit");
         System.out.println("============");
         System.out.print("Enter an option: ");
