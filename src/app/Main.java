@@ -24,19 +24,19 @@ public class Main {
         createInitialContacts();
 
         String option = "";
-        Scanner scanner = new Scanner(System.in);
         do {
+            Scanner scanner = new Scanner(System.in);
             menu();
             option = scanner.nextLine();
             if (option.equals(ADD)) {
                 Contact c = new Contact();
                 System.out.println("Please enter the email you want to add");
                 String email = scanner.nextLine();
-                if(list.check(email))
+                if(list.check(list,email))
                 {
                     c.fill(scanner, email);
+                    list.add(c);
                 }
-                list.add(c);
             }
             if (option.equals(SEARCH)) {
                 System.out.print("Find a contact by name or last name: ");
@@ -84,7 +84,7 @@ public class Main {
                     try {
                         System.out.println("Please enter the id");
                         String a = scanner.nextLine();
-                        list.show(Integer.parseInt(a));
+                        list.show(list ,Integer.parseInt(a));
                         s = true;
                     } catch (Exception e) {
                         System.out.println("Error, pls enter again\n");
@@ -98,7 +98,7 @@ public class Main {
                     try {
                         System.out.println("Please enter the User (First or Last) Name or Email Address");
                         String a = scanner.nextLine();
-                        list.find(a);
+                        list.find(list,a);
                         s = true;
                     } catch (Exception e) {
                         System.out.println("Error, pls enter again\n");

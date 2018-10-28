@@ -43,11 +43,11 @@ public class ContactList {
         }
     }
 
-    public void show(int index)
+    public void show(ContactList a,int index)
     {
         if(index >= 0 && index < length())
         {
-            System.out.println(list.get(index).toString());
+            System.out.println(a.list.get(index).toString());
         }
         else
         {
@@ -55,19 +55,19 @@ public class ContactList {
         }
     }
 
-    public void find(String id)
+    public void find(ContactList a,String id)
     {
-        for(Contact i:list)
+        for(Contact i:a.list)
         {
-            if(i.getFirstName() == id)
+            if(i.getFirstName().equals(id))
             {
                 System.out.println(i.toString());
             }
-            else if(i.getLastName() == id)
+            else if(i.getLastName().equals(id))
             {
                 System.out.println(i.toString());
             }
-            else if (i.getEmailAddress() == id)
+            else if (i.getEmailAddress().equals(id))
             {
                 System.out.println(i.toString());
             }
@@ -77,16 +77,22 @@ public class ContactList {
             }
         }
     }
-    public boolean check(String email)
+    public boolean check(ContactList a,String email)
     {
-        for(Contact i:list){
-            if(i.getEmailAddress() == email)
+        for(Contact i:a.list){
+            if(i.getEmailAddress().equals(email))
             {
                 System.out.println("This email is already exist");
                 return false;
             }
         }
-        return true;
+        if (email.matches("[A-Za-z0-9.]+@[A-Za-z0-9.]+\\.[A-Za-z0-9.]+")) {
+
+            return true;
+        } else {
+            System.out.println("Error: Invalid Email address");
+            return false;
+        }
     }
 
     public Contact getContact(int i) {

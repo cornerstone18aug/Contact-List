@@ -45,10 +45,13 @@ public class Contact {
         }
         System.out.println("*** " + action + " Contact ***");
         System.out.println("============================");
-        do {
-            System.out.print("Email Address:");
-            setEmailAddress(scanner.nextLine());
-        } while (getEmailAddress() == null);
+        if(getEmailAddress() == null)
+        {
+            do {
+                System.out.print("Email Address:");
+                setEmailAddress(scanner.nextLine());
+            } while (getEmailAddress() == null);
+        }
         do {
             System.out.print("First Name:");
             setFirstName(scanner.nextLine());
