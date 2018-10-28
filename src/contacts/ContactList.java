@@ -55,6 +55,40 @@ public class ContactList {
         }
     }
 
+    public void find(String id)
+    {
+        for(Contact i:list)
+        {
+            if(i.getFirstName() == id)
+            {
+                System.out.println(i.toString());
+            }
+            else if(i.getLastName() == id)
+            {
+                System.out.println(i.toString());
+            }
+            else if (i.getEmailAddress() == id)
+            {
+                System.out.println(i.toString());
+            }
+            else
+            {
+                System.out.println("Error: User not Found\n");
+            }
+        }
+    }
+    public boolean check(String email)
+    {
+        for(Contact i:list){
+            if(i.getEmailAddress() == email)
+            {
+                System.out.println("This email is already exist");
+                return false;
+            }
+        }
+        return true;
+    }
+
     public Contact getContact(int i) {
         return list.get(i);
     }

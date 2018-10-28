@@ -1,5 +1,6 @@
 package app;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import contacts.Contact;
@@ -13,6 +14,7 @@ public class Main {
     public static final String LIST = "4";
     public static final String UPDATE = "5";
     public static final String SHOW = "6";
+    public static final String FIND = "7";
     public static final String EXIT = "0";
 
     static ContactList list;
@@ -28,7 +30,12 @@ public class Main {
             option = scanner.nextLine();
             if (option.equals(ADD)) {
                 Contact c = new Contact();
-                c.fill(scanner);
+                System.out.println("Please enter the email you want to add");
+                String email = scanner.nextLine();
+                if(list.check(email))
+                {
+                    c.fill(scanner, email);
+                }
                 list.add(c);
             }
             if (option.equals(SEARCH)) {
@@ -49,7 +56,7 @@ public class Main {
                 if (position - 1 >= list.length() || position < 1) {
                     System.out.println("Invalid position " + position);
                 } else {
-                    list.getContact(position - 1).fill(scanner);
+                    list.getContact(position - 1).fill(scanner, null);
                 }
             }
             if (option.equals(REMOVE)) {
@@ -72,9 +79,31 @@ public class Main {
             }
             if (option.equals(SHOW))
             {
-                System.out.println("Please enter the id");
-                int index = scanner.nextInt();
-                list.show(index);
+                boolean s = false;
+                do {
+                    try {
+                        System.out.println("Please enter the id");
+                        String a = scanner.nextLine();
+                        list.show(Integer.parseInt(a));
+                        s = true;
+                    } catch (Exception e) {
+                        System.out.println("Error, pls enter again\n");
+                    }
+                }while(!s);
+            }
+            if(option.equals(FIND))
+            {
+                boolean s = false;
+                do {
+                    try {
+                        System.out.println("Please enter the User (First or Last) Name or Email Address");
+                        String a = scanner.nextLine();
+                        list.find(a);
+                        s = true;
+                    } catch (Exception e) {
+                        System.out.println("Error, pls enter again\n");
+                    }
+                }while(!s);
             }
         } while (!option.equals("0"));
     }
@@ -92,6 +121,7 @@ public class Main {
         System.out.println("4. List Contact");
         System.out.println("5. Update Contact");
         System.out.println("6. Show Contact");
+        System.out.println("7. Find Contact");
         System.out.println("0. Exit");
         System.out.println("============");
         System.out.print("Enter an option: ");

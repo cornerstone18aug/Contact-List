@@ -37,13 +37,18 @@ public class Contact {
         return result;
     }
 
-    public void fill(Scanner scanner) {
+    public void fill(Scanner scanner,String email) {
         String action = "Create";
+        setEmailAddress(email);
         if (this.getFirstName() != null) {
             action = "Update";
         }
         System.out.println("*** " + action + " Contact ***");
         System.out.println("============================");
+        do {
+            System.out.print("Email Address:");
+            setEmailAddress(scanner.nextLine());
+        } while (getEmailAddress() == null);
         do {
             System.out.print("First Name:");
             setFirstName(scanner.nextLine());
@@ -56,10 +61,8 @@ public class Contact {
             System.out.print("Phone Number:");
             setPhoneNumber(scanner.nextLine());
         } while (getPhoneNumber() == null);
-        do {
-            System.out.print("Email Address:");
-            setEmailAddress(scanner.nextLine());
-        } while (getEmailAddress() == null);
+
+
     }
 
     public String getFirstName() {
@@ -95,7 +98,9 @@ public class Contact {
     }
 
     public void setEmailAddress(String emailAddress) {
+
         if (emailAddress.matches("[A-Za-z0-9.]+@[A-Za-z0-9.]+\\.[A-Za-z0-9.]+")) {
+
             this.emailAddress = emailAddress;
         } else {
             System.out.println("Error: Invalid Email address");
