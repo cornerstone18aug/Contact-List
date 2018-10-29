@@ -98,4 +98,7 @@ public class ContactList {
     public Contact getContact(int i) {
         return list.get(i);
     }
+
+
+
 }

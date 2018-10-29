@@ -1,13 +1,16 @@
 package contacts;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Contact {
 
     private String firstName;
     private String lastName;
-    private String phoneNumber;
     private String emailAddress;
+    private ArrayList<String> newPhoneNumber = new ArrayList<>();
 
     public Contact() {
 
@@ -61,10 +64,25 @@ public class Contact {
             setLastName(scanner.nextLine());
         } while (getLastName() == null);
         do {
+            int choice;
             System.out.print("Phone Number:");
             setPhoneNumber(scanner.nextLine());
-        } while (getPhoneNumber() == null);
+            Scanner sc = new Scanner(System.in);
+            Scanner sc2 = new Scanner(System.in);
 
+            do {
+                System.out.print("Do you want to add another?: 1.Yes 2 No: ");
+                choice = sc.nextInt();
+
+                if (choice == 1) {
+                    System.out.println("Phone Number:");
+                    setPhoneNumber(sc2.nextLine());
+
+                }
+
+            }while(choice == 1);
+
+        } while (getPhoneNumber() == null && getPhoneNumber().isEmpty());
 
     }
 
@@ -84,16 +102,18 @@ public class Contact {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public ArrayList<String> getPhoneNumber() {
+        return newPhoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public ArrayList setPhoneNumber(String phoneNumber) {
         if (phoneNumber.matches("\\(?\\d{3}\\)?[\\s.-]?\\d{3}?[\\s.-]?\\d{4}")) {
-            this.phoneNumber = phoneNumber;
+//            this.phoneNumber = phoneNumber;
+            newPhoneNumber.add(phoneNumber);
         } else {
             System.out.println("Error: Invalid phone number");
         }
+        return newPhoneNumber;
     }
 
     public String getEmailAddress() {
@@ -109,4 +129,5 @@ public class Contact {
             System.out.println("Error: Invalid Email address");
         }
     }
+
 }
