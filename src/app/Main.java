@@ -1,6 +1,8 @@
 package app;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import contacts.Contact;
@@ -15,9 +17,11 @@ public class Main {
     public static final String UPDATE = "5";
     public static final String SHOW = "6";
     public static final String FIND = "7";
+    public static final String HISTORY = "8";
     public static final String EXIT = "0";
 
     static ContactList list;
+    static ArrayList<String> histories = new ArrayList<>();
 
     public static void main(String[] args) {
         list = new ContactList();
@@ -37,12 +41,14 @@ public class Main {
                     c.fill(scanner, email);
                     list.add(c);
                 }
+                System.out.println(saveHistory(option));
             }
             if (option.equals(SEARCH)) {
                 System.out.print("Find a contact by name or last name: ");
                 String word = scanner.nextLine();
                 ContactList tmp = list.search(word);
                 tmp.list();
+                System.out.println(saveHistory(option));
             }
             if (option.equals(UPDATE)) {
                 System.out.print("Find a contact by name or last name to update: ");
@@ -58,6 +64,7 @@ public class Main {
                 } else {
                     list.getContact(position - 1).fill(scanner, null);
                 }
+                System.out.println(saveHistory(option));
             }
             if (option.equals(REMOVE)) {
                 System.out.print("Find a contact by name or last name to remove: ");
@@ -73,9 +80,11 @@ public class Main {
                 } else {
                     list.remove(position - 1);
                 }
+                System.out.println(saveHistory(option));
             }
             if (option.equals(LIST)) {
                 list.list();
+                System.out.println(saveHistory(option));
             }
             if (option.equals(SHOW))
             {
@@ -90,6 +99,7 @@ public class Main {
                         System.out.println("Error, pls enter again\n");
                     }
                 }while(!s);
+                System.out.println(saveHistory(option));
             }
             if(option.equals(FIND))
             {
@@ -104,12 +114,38 @@ public class Main {
                         System.out.println("Error, pls enter again\n");
                     }
                 }while(!s);
+                System.out.println(saveHistory(option));
+            }
+            if(option.equals(HISTORY))
+            {
+                System.out.println("Your histories are: ");
+                showHistory();
+                System.out.println(saveHistory(option));
             }
         } while (!option.equals("0"));
     }
 
     public static void createInitialContacts() {
         list.add(new Contact("Murillo", "Camargo", "2367775334", "murillo@murillocamargo.com.br"));
+    }
+
+    public static String saveHistory(String option){
+       if(histories.size() < 3) {
+           histories.add(option);
+       }else {
+           histories.remove(0);
+        }
+        return "Ok";
+    }
+
+    public static String[] showHistory(){
+        String[] currentHistory = new String[3];
+        // loop array to show each item inside
+        for(int i = 0; i < histories.size(); i++){
+            System.out.println(histories.get(i));
+            currentHistory[i] = histories.get(i);
+        }
+        return currentHistory;
     }
 
     public static void menu() {
