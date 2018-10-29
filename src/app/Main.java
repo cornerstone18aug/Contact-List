@@ -158,6 +158,7 @@ public class Main {
         System.out.println("5. Update Contact");
         System.out.println("6. Show Contact");
         System.out.println("7. Find Contact");
+        System.out.println("8. History");
         System.out.println("0. Exit");
         System.out.println("============");
         System.out.print("Enter an option: ");
