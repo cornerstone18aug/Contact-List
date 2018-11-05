@@ -36,8 +36,7 @@ public class Main {
                 Contact c = new Contact();
                 System.out.println("Please enter the email you want to add");
                 String email = scanner.nextLine();
-                if(list.check(list,email))
-                {
+                if (list.check(list, email)) {
                     c.fill(scanner, email);
                     list.add(c);
                 }
@@ -86,38 +85,35 @@ public class Main {
                 list.list();
                 System.out.println(saveHistory(option));
             }
-            if (option.equals(SHOW))
-            {
+            if (option.equals(SHOW)) {
                 boolean s = false;
                 do {
                     try {
                         System.out.println("Please enter the id");
                         String a = scanner.nextLine();
-                        list.show(list ,Integer.parseInt(a));
+                        list.show(list, Integer.parseInt(a));
                         s = true;
                     } catch (Exception e) {
                         System.out.println("Error, pls enter again\n");
                     }
-                }while(!s);
+                } while (!s);
                 System.out.println(saveHistory(option));
             }
-            if(option.equals(FIND))
-            {
+            if (option.equals(FIND)) {
                 boolean s = false;
                 do {
                     try {
                         System.out.println("Please enter the User (First or Last) Name or Email Address");
                         String a = scanner.nextLine();
-                        list.find(list,a);
+                        list.find(list, a);
                         s = true;
                     } catch (Exception e) {
                         System.out.println("Error, pls enter again\n");
                     }
-                }while(!s);
+                } while (!s);
                 System.out.println(saveHistory(option));
             }
-            if(option.equals(HISTORY))
-            {
+            if (option.equals(HISTORY)) {
                 System.out.println("Your histories are: ");
                 showHistory();
                 System.out.println(saveHistory(option));
@@ -126,22 +122,27 @@ public class Main {
     }
 
     public static void createInitialContacts() {
-        list.add(new Contact("Murillo", "Camargo", "2367775334", "murillo@murillocamargo.com.br"));
+        list.add(new Contact(
+                "Murillo",
+                "Camargo",
+                "2367775334",
+                "murillo@murillocamargo.com.br"
+        ));
     }
 
-    public static String saveHistory(String option){
-       if(histories.size() < 3) {
-           histories.add(option);
-       }else {
-           histories.remove(0);
+    public static String saveHistory(String option) {
+        if (histories.size() < 3) {
+            histories.add(option);
+        } else {
+            histories.remove(0);
         }
         return "Ok";
     }
 
-    public static String[] showHistory(){
+    public static String[] showHistory() {
         String[] currentHistory = new String[3];
         // loop array to show each item inside
-        for(int i = 0; i < histories.size(); i++){
+        for (int i = 0; i < histories.size(); i++) {
             System.out.println(histories.get(i));
             currentHistory[i] = histories.get(i);
         }
@@ -163,6 +164,4 @@ public class Main {
         System.out.println("============");
         System.out.print("Enter an option: ");
     }
-
-
 }

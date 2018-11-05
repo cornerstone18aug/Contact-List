@@ -43,45 +43,31 @@ public class ContactList {
         }
     }
 
-    public void show(ContactList a,int index)
-    {
-        if(index >= 0 && index < length())
-        {
+    public void show(ContactList a, int index) {
+        if (index >= 0 && index < length()) {
             System.out.println(a.list.get(index).toString());
-        }
-        else
-        {
+        } else {
             System.out.println("Error: ID Not Found");
         }
     }
 
-    public void find(ContactList a,String id)
-    {
-        for(Contact i:a.list)
-        {
-            if(i.getFirstName().equals(id))
-            {
+    public void find(ContactList a, String id) {
+        for (Contact i : a.list) {
+            if (i.getFirstName().equals(id)) {
                 System.out.println(i.toString());
-            }
-            else if(i.getLastName().equals(id))
-            {
+            } else if (i.getLastName().equals(id)) {
                 System.out.println(i.toString());
-            }
-            else if (i.getEmailAddress().equals(id))
-            {
+            } else if (i.getEmailAddress().equals(id)) {
                 System.out.println(i.toString());
-            }
-            else
-            {
+            } else {
                 System.out.println("Error: User not Found\n");
             }
         }
     }
-    public boolean check(ContactList a,String email)
-    {
-        for(Contact i:a.list){
-            if(i.getEmailAddress().equals(email))
-            {
+
+    public boolean check(ContactList a, String email) {
+        for (Contact i : a.list) {
+            if (i.getEmailAddress().equals(email)) {
                 System.out.println("This email is already exist");
                 return false;
             }
@@ -98,7 +84,4 @@ public class ContactList {
     public Contact getContact(int i) {
         return list.get(i);
     }
-
-
-
 }

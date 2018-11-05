@@ -40,7 +40,7 @@ public class Contact {
         return result;
     }
 
-    public void fill(Scanner scanner,String email) {
+    public void fill(Scanner scanner, String email) {
         String action = "Create";
         setEmailAddress(email);
         if (this.getFirstName() != null) {
@@ -48,8 +48,7 @@ public class Contact {
         }
         System.out.println("*** " + action + " Contact ***");
         System.out.println("============================");
-        if(getEmailAddress() == null)
-        {
+        if (getEmailAddress() == null) {
             do {
                 System.out.print("Email Address:");
                 setEmailAddress(scanner.nextLine());
@@ -80,7 +79,7 @@ public class Contact {
 
                 }
 
-            }while(choice == 1);
+            } while (choice == 1);
 
         } while (getPhoneNumber() == null && getPhoneNumber().isEmpty());
 
@@ -129,5 +128,4 @@ public class Contact {
             System.out.println("Error: Invalid Email address");
         }
     }
-
 }
